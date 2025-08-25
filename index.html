@@ -144,6 +144,7 @@
         .logo-img img {
             height: 100%;
             width: auto;
+            object-fit: contain;
         }
         
         .logo-text {
@@ -204,7 +205,7 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1562077982-8929e7d1cd22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('t.jpeg') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -242,6 +243,7 @@
             width: 100%;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
         }
         
         .vision-mission {
@@ -507,8 +509,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary-green);
-            font-size: 3rem;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.05);
         }
         
         .service-content {
@@ -823,10 +835,10 @@
         @media (max-width: 768px) {
             .hamburger {
                 display: block;
-            z-index: 1001;
-            position: relative;
-            color: white;
-            background: var(--primary-green);
+                z-index: 1001;
+                position: relative;
+                color: white;
+                background: var(--primary-green);
                 width: 40px;
                 height: 40px;
                 display: flex;
@@ -931,8 +943,7 @@
             <nav class="navbar">
                 <div class="logo-container">
                     <div class="logo-img">
-                        <!-- Company Logo -->
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%232e7d32'/%3E%3Cpath d='M30,35 L70,35 L65,65 L35,65 Z' fill='white'/%3E%3Ccircle cx='50' cy='45' r='10' fill='%23d32f2f'/%3E%3C/svg%3E" alt="Jest Foods Logo" width="60" height="60">
+                        <img src="logo.jpg" alt="Jest Foods Logo">
                     </div>
                     <a href="index.html" class="logo-text">JEST <span>FOODS</span></a>
                 </div>
@@ -981,7 +992,7 @@
                     </div>
                 </div>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1562077982-8929e7d1cd22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Jest Foods Products">
+                    <img src="ketchup.jpeg" alt="Jest Foods Products">
                 </div>
             </div>
         </div>
@@ -1025,12 +1036,10 @@
             </div>
         </div>
     </section>
-    
-    <!-- Team Section -->
-    <section id="team" class="team-section">
+     <section id="team" class="team-section">
         <div class="container">
             <h2 class="section-title">Our Leadership Team</h2>
-            <p class="text-center" style="max-width: 800px; margin: 0 auto 40px; font-size: 1.2rem;">
+            <p class="text-center">
                 Meet the passionate founders driving innovation at Jest Foods
             </p>
             
@@ -1038,45 +1047,12 @@
                 <!-- Team Member 1 -->
                 <div class="team-member">
                     <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="Jackline Bawaye">
-                        <div class="designation-badge">Co-Founder</div>
-                    </div>
-                    <div class="member-info">
-                        <h2 class="member-name">Jackline Bawaye</h2>
-                        <p class="member-title">Co-Director & Product Development</p>
-                        
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:jacklinebawaye@gmail.com">jacklinebawaye@gmail.com</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:+256705514324">+256 705 514 324</a>
-                            </div>
-                        </div>
-                        
-                        <button class="profile-toggle">
-                            <i class="fas fa-chevron-down"></i> View Professional Profile
-                        </button>
-                    </div>
-                    
-                    <div class="profile-content">
-                        <h3>Professional Profile</h3>
-                        <p>Jackline Bawaye is a co-founder of Jest Foods Industries Limited and a graduate of the School of Food Technology, Nutrition and Bioengineering at Makerere University. She brings extensive expertise in food processing and product development, having led the formulation of Jest Foods' flagship tomato ketchup product.</p>
-                        <p>With a passion for reducing post-harvest losses and creating economic opportunities for market vendors, Jackline co-founded the Success Tribe initiative to formalize relationships with tomato suppliers. Her commitment to innovation and community empowerment drives Jest Foods' mission to transform Uganda's food processing landscape.</p>
-                    </div>
-                </div>
-                
-                <!-- Team Member 2 -->
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="Esther Nakimuli">
+                        <img src="estar.jpg" alt="Esther Nakimuli">
                         <div class="designation-badge">Co-Founder</div>
                     </div>
                     <div class="member-info">
                         <h2 class="member-name">Esther Nakimuli</h2>
-                        <p class="member-title">Co-Director & Operations</p>
+                        <p class="member-title">Co-Directors & Operations</p>
                         
                         <div class="contact-info">
                             <div class="contact-item">
@@ -1100,9 +1076,45 @@
                         <p>Esther spearheaded the development of Jest Foods' innovative probiotic ketchup, combining her expertise in biotechnology with a commitment to creating healthier food alternatives for Ugandan consumers. Her strategic vision focuses on scaling operations while maintaining the company's core values of sustainability and community impact.</p>
                     </div>
                 </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="jackie.jpeg" alt="Jackline Bawaye">
+                        <div class="designation-badge">Co-Founder</div>
+                    </div>
+                    <div class="member-info">
+                        <h2 class="member-name">Jackline Bawaye</h2>
+                        <p class="member-title">Co-Directors & Product Development</p>
+                        
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:jacklinebawaye@gmail.com">jacklinebawaye@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+256705514324">+256 705 514 324</a>
+                            </div>
+                        </div>
+                        
+                        <button class="profile-toggle">
+                            <i class="fas fa-chevron-down"></i> View Professional Profile
+                        </button>
+                    </div>
+                    
+                    <div class="profile-content">
+                        <h3>Professional Profile</h3>
+                        <p>Jackline Bawaye is a co-founder of Jest Foods Industries Limited and a graduate of the School of Food Technology, Nutrition and Bioengineering at Makerere University. She brings extensive expertise in food processing and product development, having led the formulation of Jest Foods' flagship tomato ketchup product.</p>
+                        <p>With a passion for reducing post-harvest losses and creating economic opportunities for market vendors, Jackline co-founded the Success Tribe initiative to formalize relationships with tomato suppliers. Her commitment to innovation and community empowerment drives Jest Foods' mission to transform Uganda's food processing landscape.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    
+
 
     <!-- Products Section -->
     <section id="products">
@@ -1110,8 +1122,8 @@
             <h2 class="section-title">Our Products</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-img" style="background-color: #ffebee;">
-                        <i class="fas fa-wine-bottle" style="color: #d32f2f;"></i>
+                    <div class="service-img">
+                        <img src="ketchup.jpeg" alt="Tomato Ketchup">
                     </div>
                     <div class="service-content">
                         <h3>Tomato Ketchup</h3>
@@ -1120,8 +1132,8 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-color: #fff3e0;">
-                        <i class="fas fa-mortar-pestle" style="color: #ff9800;"></i>
+                    <div class="service-img">
+                        <img src="bbk.jpeg" alt="BBQ Sauce">
                     </div>
                     <div class="service-content">
                         <h3>BBQ Sauce</h3>
@@ -1130,8 +1142,8 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-color: #ffebee;">
-                        <i class="fas fa-pepper-hot" style="color: #f44336;"></i>
+                    <div class="service-img">
+                        <img src="hotsauce.jpeg" alt="Hot Sauce">
                     </div>
                     <div class="service-content">
                         <h3>Hot Sauce</h3>
@@ -1140,8 +1152,8 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-color: #e8f5e9;">
-                        <i class="fas fa-flask" style="color: #2e7d32;"></i>
+                    <div class="service-img">
+                        <img src="ketchup.jpeg" alt="Probiotic Ketchup">
                     </div>
                     <div class="service-content">
                         <h3>Probiotic Ketchup</h3>
@@ -1150,8 +1162,8 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-color: #fff8e1;">
-                        <i class="fas fa-jar" style="color: #ff8f00;"></i>
+                    <div class="service-img">
+                        <img src="ts.jpeg" alt="Tomato Sauce">
                     </div>
                     <div class="service-content">
                         <h3>Tomato Sauce</h3>
@@ -1160,8 +1172,8 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-color: #fbe9e7;">
-                        <i class="fas fa-apple-alt" style="color: #d84315;"></i>
+                    <div class="service-img">
+                        <img src="images/success-tribe.jpg" alt="Success Tribe Initiative">
                     </div>
                     <div class="service-content">
                         <h3>Success Tribe Initiative</h3>
@@ -1246,7 +1258,7 @@
                 <div class="contact-info">
                     <h3>Contact Information</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Food Technology and Incubation Business Center, Makerere University, Kampala, Uganda</p>
-                    <p><i class="fas fa-phone"></i> +256 705 514 324 / +256 708 985 292</p>
+                    <p><i class="fas fa-phone"></i> +256 746359995 / +256 780699436</p>
                     <p><i class="fas fa-envelope"></i> info@jestfoods.com</p>
                     <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 5:00 PM</p>
                     
@@ -1302,7 +1314,9 @@
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <div class="footer-section">
+                <div class="footer
+
+-section">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#home">Home</a></li>
@@ -1327,7 +1341,7 @@
                 <div class="footer-section">
                     <h3>Contact Info</h3>
                     <p><i class="fas fa-map-marker-alt"></i> Makerere University, Kampala, Uganda</p>
-                    <p><i class="fas fa-phone"></i> +256 705 514 324</p>
+                    <p><i class="fas fa-phone"></i> +256 746 359995</p>
                     <p><i class="fas fa-envelope"></i> info@jestfoods.com</p>
                 </div>
             </div>
