@@ -203,15 +203,34 @@
             color: var(--primary-green);
         }
         
-        /* Hero Section */
+       /* Hero Section - UPDATED BACKGROUND */
         .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('t.jpeg') no-repeat center center/cover;
+           background: linear-gradient(135deg, 
+                rgba(211, 47, 47, 0.85) 0%, 
+                rgba(248, 193, 70, 0.85) 100%);
             height: 100vh;
             display: flex;
             align-items: center;
             text-align: center;
             color: white;
             padding-top: 60px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(46, 125, 50, 0.4) 0%, rgba(211, 47, 47, 0.4) 50%, rgba(248, 193, 70, 0.4) 100%);
+            z-index: 1;
+        }
+        
+        .hero > .container {
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
@@ -227,6 +246,7 @@
             margin: 0 auto 30px;
             text-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
+
         
         /* About Section */
         .about-content {
@@ -992,7 +1012,7 @@
                     </div>
                 </div>
                 <div>
-                    <img src="ketchup.jpeg" alt="Jest Foods Products">
+                    <img src="kethup2.png" alt="Jest Foods Products">
                 </div>
             </div>
         </div>
@@ -1147,7 +1167,7 @@
                     </div>
                     <div class="service-content">
                         <h3>Appeta</h3>
-                        <p>A health and tasty instant appetizer.</p>
+                        <p>A healthy and tasty instant appetizer.</p>
                         <!-- <div class="price-tag">UGX 3,500 (500mL)</div> -->
                     </div>
                 </div>
@@ -1347,7 +1367,8 @@
                         <li>Tomato Ketchup</li>
                         <li>BBQ Sauce</li>
                         <li>Hot Sauce</li>
-                        <li>Probiotic Ketchup</li>
+                        <li>appeta</li>
+                        <li>Tomato Paste</li>
                         <li>Tomato Sauce</li>
                         <li>Success Tribe Initiative</li>
                     </ul>
