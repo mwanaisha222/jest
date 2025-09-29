@@ -1,576 +1,714 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jest Foods Industries Limited</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary-green: #2e7d32;
-            --primary-red: #d32f2f;
-            --accent-gold: #f8c146;
-            --dark-color: #1a1a1a;
-            --light-color: #f5f5f5;
-            --text-color: #333;
-            --gray-light: #eaeaea;
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #f9f9f9;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--dark-color);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-red) 100%);
-            color: white;
-            padding: 12px 28px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 14px;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-green) 100%);
-            opacity: 0;
-            transition: var(--transition);
-            z-index: -1;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn:hover::before {
-            opacity: 1;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            position: relative;
-            margin-bottom: 50px;
-            font-size: 2.5rem;
-            text-align: center;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-green), var(--primary-red));
-            border-radius: 2px;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo-img {
-            height: 60px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-img img {
-            height: 100%;
-            width: auto;
-            object-fit: contain;
-        }
-        
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-green);
-            text-decoration: none;
-        }
-        
-        .logo-text span {
-            color: var(--primary-red);
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-menu li {
-            margin-left: 30px;
-        }
-        
-        .nav-menu li a {
-            color: var(--dark-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            font-size: 1rem;
-            position: relative;
-            padding: 5px 0;
-        }
-        
-        .nav-menu li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-green), var(--primary-red));
-            transition: var(--transition);
-        }
-        
-        .nav-menu li a:hover {
-            color: var(--primary-green);
-        }
-        
-        .nav-menu li a:hover::after {
-            width: 100%;
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--primary-green);
-        }
-        
-       /* Hero Section - UPDATED BACKGROUND */
-        .hero {
-           background: linear-gradient(135deg, 
-                rgba(211, 47, 47, 0.85) 0%, 
-                rgba(248, 193, 70, 0.85) 100%);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding-top: 60px;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(46, 125, 50, 0.4) 0%, rgba(211, 47, 47, 0.4) 50%, rgba(248, 193, 70, 0.4) 100%);
-            z-index: 1;
-        }
-        
-        .hero > .container {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        
-        .hero p {
-            font-size: 1.4rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
+      :root {
+        --primary-green: #2e7d32;
+        --primary-red: #d32f2f;
+        --accent-gold: #f8c146;
+        --dark-color: #1a1a1a;
+        --light-color: #f5f5f5;
+        --text-color: #333;
+        --gray-light: #eaeaea;
+        --transition: all 0.3s ease;
+      }
 
-        
-        /* About Section */
-        .about-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-        
-        .about-content > div {
-            flex: 1;
-        }
-        
-        .about-content img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            object-fit: cover;
-        }
-        
-        .vision-mission {
-            background-color: var(--light-color);
-            padding: 40px;
-            border-radius: 10px;
-            margin-top: 30px;
-            border-left: 4px solid var(--primary-green);
-            border-right: 4px solid var(--primary-red);
-            background: linear-gradient(to right, rgba(46, 125, 50, 0.03), rgba(211, 47, 47, 0.03));
-        }
-        
-        .vision-mission div {
-            margin-bottom: 30px;
-        }
-        
-        .vision-mission h3 {
-            color: var(--primary-green);
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .vision-mission h3::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-red);
-        }
-        
-        /* Core Values */
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .value-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: var(--transition);
-            border-top: 3px solid var(--primary-green);
-            border-bottom: 3px solid var(--primary-red);
-        }
-        
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .value-icon {
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-        
-        .value-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-        
-        /* Team Section */
-        .team-section {
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: #f9f9f9;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--dark-color);
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .btn {
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green) 0%,
+          var(--primary-red) 100%
+        );
+        color: white;
+        padding: 12px 28px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 14px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--primary-red) 0%,
+          var(--primary-green) 100%
+        );
+        opacity: 0;
+        transition: var(--transition);
+        z-index: -1;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn:hover::before {
+        opacity: 1;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        position: relative;
+        margin-bottom: 50px;
+        font-size: 2.5rem;
+        text-align: center;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-green),
+          var(--primary-red)
+        );
+        border-radius: 2px;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: white;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo-img {
+        height: 60px;
+        display: flex;
+        align-items: center;
+      }
+
+      .logo-img img {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+      }
+
+      .logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        text-decoration: none;
+      }
+
+      .logo-text span {
+        color: var(--primary-red);
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-menu li {
+        margin-left: 30px;
+      }
+
+      .nav-menu li a {
+        color: var(--dark-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+        font-size: 1rem;
+        position: relative;
+        padding: 5px 0;
+      }
+
+      .nav-menu li a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--primary-green),
+          var(--primary-red)
+        );
+        transition: var(--transition);
+      }
+
+      .nav-menu li a:hover {
+        color: var(--primary-green);
+      }
+
+      .nav-menu li a:hover::after {
+        width: 100%;
+      }
+
+      .hamburger {
+        display: none;
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: var(--primary-green);
+      }
+
+      /* Hero Section - UPDATED BACKGROUND */
+      /* Hero Section - UPDATED BACKGROUND */
+.hero {
+  background: url('TOMATOES.PNG') center/cover no-repeat,
+              linear-gradient(135deg, rgba(211, 47, 47, 0.85) 0%, rgba(248, 193, 70, 0.85) 100%);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding-top: 60px;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(46, 125, 50, 0.4) 0%,
+    rgba(211, 47, 47, 0.4) 50%,
+    rgba(248, 193, 70, 0.4) 100%
+  );
+  z-index: 1;
+}
+
+.hero > .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero p {
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: 0 auto 30px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+      /* About Section */
+      .about-content {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .about-content > div {
+        flex: 1;
+      }
+
+      .about-content img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+      }
+
+      .vision-mission {
+        background-color: var(--light-color);
+        padding: 40px;
+        border-radius: 10px;
+        margin-top: 30px;
+        border-left: 4px solid var(--primary-green);
+        border-right: 4px solid var(--primary-red);
+        background: linear-gradient(
+          to right,
+          rgba(46, 125, 50, 0.03),
+          rgba(211, 47, 47, 0.03)
+        );
+      }
+
+      .vision-mission div {
+        margin-bottom: 30px;
+      }
+
+      .vision-mission h3 {
+        color: var(--primary-green);
+        margin-bottom: 10px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .vision-mission h3::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary-red);
+      }
+
+      /* Core Values */
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .value-card {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        transition: var(--transition);
+        border-top: 3px solid var(--primary-green);
+        border-bottom: 3px solid var(--primary-red);
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .value-icon {
+        font-size: 3rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-red)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+      }
+
+      .value-card h3 {
+        margin-bottom: 15px;
+        font-size: 1.4rem;
+      }
+
+      /* Team Section */
+      .team-section {
+        background-color: #f5f9f5;
+      }
+
+      .team-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .team-member {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        width: 100%;
+        max-width: 350px;
+        position: relative;
+      }
+
+      .team-member:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .member-image {
+        height: 280px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .member-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .team-member:hover .member-image img {
+        transform: scale(1.05);
+      }
+
+      .designation-badge {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(
+          90deg,
+          var(--primary-green),
+          var(--primary-red)
+        );
+        color: white;
+        padding: 10px 15px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 0 8px 0 0;
+      }
+
+      .member-info {
+        padding: 25px;
+      }
+
+      .member-name {
+        font-size: 1.6rem;
+        color: var(--dark-color);
+        margin-bottom: 5px;
+      }
+
+      .member-title {
+        color: var(--primary-green);
+        font-weight: 600;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 20px 0;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--text-color);
+      }
+
+      .contact-item i {
+        color: var(--primary-green);
+        font-size: 1.1rem;
+        min-width: 20px;
+      }
+
+      .contact-item a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .contact-item a:hover {
+        color: var(--primary-green);
+      }
+
+      .profile-toggle {
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-red)
+        );
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        transition: var(--transition);
+      }
+
+      .profile-toggle:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+        padding: 0 25px;
+        background: linear-gradient(
+          to right,
+          rgba(46, 125, 50, 0.03),
+          rgba(211, 47, 47, 0.03)
+        );
+      }
+
+      .profile-content.active {
+        max-height: 1000px;
+        padding: 25px;
+      }
+
+      .profile-content h3 {
+        color: var(--primary-green);
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+      }
+
+      .profile-content p {
+        margin-bottom: 15px;
+        color: var(--text-color);
+      }
+
+      .skills {
+        margin-top: 15px;
+      }
+
+      .skills h4 {
+        color: var(--primary-green);
+        margin-bottom: 10px;
+      }
+
+      .skills ul {
+        padding-left: 20px;
+      }
+
+      .skills li {
+        margin-bottom: 8px;
+      }
+
+      /* Products Section */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .service-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        border-top: 3px solid var(--primary-green);
+        border-bottom: 3px solid var(--primary-red);
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-img {
+        height: 200px;
+        background-color: var(--gray-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .service-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .service-card:hover .service-img img {
+        transform: scale(1.05);
+      }
+
+      .service-content {
+        padding: 25px;
+      }
+
+      .service-content h3 {
+        margin-bottom: 15px;
+        color: var(--primary-green);
+      }
+
+      .price-tag {
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--primary-red)
+        );
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-weight: 600;
+        display: inline-block;
+        margin-top: 10px;
+      }
+
+      /* Strategic Plan Section */
+        .strategic-plan-section {
             background-color: #f5f9f5;
         }
-        
-        .team-container {
+
+        .featured-product {
             display: flex;
             flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
             justify-content: center;
-            gap: 30px;
-            margin-top: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        
-        .team-member {
-            background: white;
+
+        .product-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-image img {
             width: 100%;
-            max-width: 350px;
-            position: relative;
-        }
-        
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .member-image {
-            height: 280px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .member-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
             transition: transform 0.5s ease;
         }
-        
-        .team-member:hover .member-image img {
+
+        .product-image:hover img {
             transform: scale(1.05);
         }
-        
-        .designation-badge {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(90deg, var(--primary-green), var(--primary-red));
-            color: white;
-            padding: 10px 15px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 0 8px 0 0;
-        }
-        
-        .member-info {
-            padding: 25px;
-        }
-        
-        .member-name {
-            font-size: 1.6rem;
-            color: var(--dark-color);
-            margin-bottom: 5px;
-        }
-        
-        .member-title {
-            color: var(--primary-green);
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-color);
-        }
-        
-        .contact-item i {
-            color: var(--primary-green);
-            font-size: 1.1rem;
-            min-width: 20px;
-        }
-        
-        .contact-item a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .contact-item a:hover {
-            color: var(--primary-green);
-        }
-        
-        .profile-toggle {
-            background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            transition: var(--transition);
-        }
-        
-        .profile-toggle:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .profile-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-            padding: 0 25px;
-            background: linear-gradient(to right, rgba(46, 125, 50, 0.03), rgba(211, 47, 47, 0.03));
-        }
-        
-        .profile-content.active {
-            max-height: 1000px;
-            padding: 25px;
-        }
-        
-        .profile-content h3 {
-            color: var(--primary-green);
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-        
-        .profile-content p {
-            margin-bottom: 15px;
-            color: var(--text-color);
-        }
-        
-        .skills {
-            margin-top: 15px;
-        }
-        
-        .skills h4 {
-            color: var(--primary-green);
-            margin-bottom: 10px;
-        }
-        
-        .skills ul {
-            padding-left: 20px;
-        }
-        
-        .skills li {
-            margin-bottom: 8px;
-        }
-        
-        /* Products Section */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
+
+        .product-details {
+            flex: 1;
+            min-width: 300px;
             background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            border-top: 3px solid var(--primary-green);
-            border-bottom: 3px solid var(--primary-red);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--primary-green);
+            border-bottom: 4px solid var(--primary-red);
         }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-img {
-            height: 200px;
-            background-color: var(--gray-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        
-        .service-card:hover .service-img img {
-            transform: scale(1.05);
-        }
-        
-        .service-content {
-            padding: 25px;
-        }
-        
-        .service-content h3 {
-            margin-bottom: 15px;
+
+        .product-details h3 {
             color: var(--primary-green);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
         }
-        
-        .price-tag {
+
+        .product-details h3::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-red);
+        }
+
+        .product-details p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
             background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
             color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
+            padding: 8px 20px;
+            border-radius: 30px;
             font-weight: 600;
-            display: inline-block;
-            margin-top: 10px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
-        
-        /* Strategic Plan */
+
+        /* Timeline Styles */
         .timeline {
             position: relative;
             max-width: 1000px;
             margin: 50px auto;
         }
-        
+
         .timeline::after {
-            content: '';
+            content: "";
             position: absolute;
             width: 6px;
             background: linear-gradient(to bottom, var(--primary-green), var(--primary-red));
@@ -579,16 +717,16 @@
             left: 50%;
             margin-left: -3px;
         }
-        
+
         .timeline-item {
             padding: 10px 40px;
             position: relative;
             width: 50%;
             box-sizing: border-box;
         }
-        
+
         .timeline-item::after {
-            content: '';
+            content: "";
             position: absolute;
             width: 25px;
             height: 25px;
@@ -598,25 +736,25 @@
             border-radius: 50%;
             z-index: 1;
         }
-        
+
         .left {
             left: 0;
         }
-        
+
         .right {
             left: 50%;
         }
-        
+
         .left::after {
             right: -17px;
             border-color: var(--primary-green);
         }
-        
+
         .right::after {
             left: -17px;
             border-color: var(--primary-red);
         }
-        
+
         .timeline-content {
             padding: 20px;
             background-color: white;
@@ -625,281 +763,20 @@
             border-left: 3px solid var(--primary-green);
             border-right: 3px solid var(--primary-red);
         }
-        
+
         .timeline-content h3 {
             color: var(--primary-green);
             margin-bottom: 10px;
         }
-        
-        /* Financial Highlights */
-        .financial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .financial-card {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            border: 2px solid var(--gray-light);
-            transition: var(--transition);
-        }
-        
-        .financial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary-green);
-        }
-        
-        .financial-icon {
-            font-size: 3rem;
-            color: var(--primary-green);
-            margin-bottom: 20px;
-        }
-        
-        .financial-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-green);
-            margin: 15px 0;
-        }
-        
-        /* Contact Section */
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .contact-info {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--primary-green);
-            border-right: 3px solid var(--primary-red);
-        }
-        
-        .contact-info p {
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .contact-info i {
-            margin-right: 15px;
-            color: var(--primary-green);
-            font-size: 1.2rem;
-            min-width: 24px;
-        }
-        
-        .contact-form {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-left: 3px solid var(--primary-red);
-            border-right: 3px solid var(--primary-green);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--primary-green);
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary-green);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
-        }
-        
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        
-        .map {
-            height: 400px;
-            margin-top: 40px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border: 3px solid transparent;
-            background: linear-gradient(white, white) padding-box,
-                        linear-gradient(135deg, var(--primary-green), var(--primary-red)) border-box;
-        }
-        
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--primary-green) 0%, #1b5e20 100%);
-            color: white;
-            padding-top: 60px;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-section h3 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1.4rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary-red);
-        }
-        
-        .footer-section p, .footer-section li {
-            opacity: 0.9;
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-section ul li a {
-            color: white;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-section ul li a:hover {
-            opacity: 1;
-            color: var(--accent-gold);
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 50%;
-            transition: var(--transition);
-        }
-        
-        .social-icons a:hover {
-            background-color: var(--primary-red);
-            color: white;
-            transform: translateY(-3px);
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 20px 0;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.1);
-        }
-        
+
         /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-        }
-        
         @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-                z-index: 1001;
-                position: relative;
-                color: white;
-                background: var(--primary-green);
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 4px;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 0;
-                left: -100%;
+            .featured-product {
                 flex-direction: column;
-                background: linear-gradient(135deg, var(--primary-green), #1b5e20);
-                width: 100%;
-                height: 100vh;
-                text-align: center;
-                transition: 0.3s;
-                padding: 100px 0;
-                z-index: 1000;
             }
             
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .nav-menu li {
-                margin: 15px 0;
-            }
-            
-            .nav-menu li a {
-                color: white;
-                font-size: 1.2rem;
-            }
-            
-            .nav-menu li a::after {
-                background: var(--primary-red);
-            }
-            
-            .about-content {
-                flex-direction: column;
+            .product-image, .product-details {
+                max-width: 100%;
             }
             
             .timeline::after {
@@ -915,303 +792,642 @@
             .timeline-item::after {
                 left: 18px;
             }
-            
-            .right {
-                left: 0;
-            }
         }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            section {
-                padding: 60px 0;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .btn {
-                padding: 10px 20px;
-            }
-            
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            
-            .logo-img {
-                height: 50px;
-            }
-            
-            .financial-value {
-                font-size: 2rem;
-            }
+        /* Community Outreach Section */
+        .community-section {
+            background: linear-gradient(135deg, rgba(46, 125, 50, 0.05) 0%, rgba(211, 47, 47, 0.05) 100%);
         }
+
+        .community-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .community-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .community-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .community-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .community-details {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--primary-green);
+            border-bottom: 4px solid var(--primary-red);
+            text-align: center;
+        }
+
+        .community-details h3 {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .community-details h3::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-red);
+        }
+
+        .community-details p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .vendor-count {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-red));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .community-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .community-content {
+                flex-direction: column;
+            }
+            
+            .community-image, .community-details {
+                max-width: 100%;
+            }
+          }
+
+      /* Financial Highlights */
+      .financial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .financial-card {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        border: 2px solid var(--gray-light);
+        transition: var(--transition);
+      }
+
+      .financial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary-green);
+      }
+
+      .financial-icon {
+        font-size: 3rem;
+        color: var(--primary-green);
+        margin-bottom: 20px;
+      }
+
+      .financial-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin: 15px 0;
+      }
+           /* Contact Section */
+      .contact-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+      }
+
+      .contact-info {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border-left: 3px solid var(--primary-green);
+        border-right: 3px solid var(--primary-red);
+      }
+
+      .contact-info p {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: flex-start;
+      }
+
+      .contact-info i {
+        margin-right: 15px;
+        color: var(--primary-green);
+        font-size: 1.2rem;
+        min-width: 24px;
+      }
+
+      .contact-form {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border-left: 3px solid var(--primary-red);
+        border-right: 3px solid var(--primary-green);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--primary-green);
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--primary-green);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.2);
+      }
+
+      .form-group textarea {
+        height: 150px;
+        resize: vertical;
+      }
+
+      .map {
+        height: 400px;
+        margin-top: 40px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border: 3px solid transparent;
+        background: linear-gradient(white, white) padding-box,
+          linear-gradient(135deg, var(--primary-green), var(--primary-red))
+            border-box;
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(
+          135deg,
+          var(--primary-green) 0%,
+          #1b5e20 100%
+        );
+        color: white;
+        padding-top: 60px;
+      }
+
+      .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-section h3 {
+        color: white;
+        margin-bottom: 20px;
+        font-size: 1.4rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .footer-section h3::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: var(--primary-red);
+      }
+
+      .footer-section p,
+      .footer-section li {
+        opacity: 0.9;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: white;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-section ul li a:hover {
+        opacity: 1;
+        color: var(--accent-gold);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-icons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+
+      .social-icons a:hover {
+        background-color: var(--primary-red);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.1);
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo-container">
-                    <div class="logo-img">
-                        <img src="logo2.png" alt="Jest Foods Logo">
-                    </div>
-                    <a href="index.html" class="logo-text">JEST <span>FOODS</span></a>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#team">Our Team</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#strategic-plan">Strategic Plan</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
-            </nav>
-        </div>
+      <div class="container">
+        <nav class="navbar">
+          <div class="logo-container">
+            <div class="logo-img">
+              <img src="logo2.png" alt="Jest Foods Logo" />
+            </div>
+            <a href="index.html" class="logo-text">JEST <span>FOODS</span></a>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#strategic-plan">Strategic Plan</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <div class="hamburger">
+            <i class="fas fa-bars"></i>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <h1>JEST FOODS INDUSTRIES LIMITED</h1>
-            <p>Transforming surplus tomatoes into safe, nutritious, and affordable value-added products</p>
-            <a href="#about" class="btn">Discover Our Mission</a>
-        </div>
+      <div class="container">
+        <h1>JEST FOODS INDUSTRIES LIMITED</h1>
+        <p>
+          Transforming surplus tomatoes into safe, nutritious, and affordable
+          value-added products in the tomato value chain.
+        </p>
+        <a href="#about" class="btn">Discover Our Mission</a>
+      </div>
     </section>
 
     <!-- About Section -->
     <section id="about">
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            <div class="about-content">
-                <div>
-                    <h2>Our Vision</h2>
-                    <p>To become Uganda's leading food processing company known for pioneering affordable, safe, and nutritious condiments that drive inclusive agribusiness growth across local and export markets.</p>
-                    
-                    <div class="vision-mission">
-                        <div>
-                            <h3>Our Mission</h3>
-                            <p>To locally transform surplus and underutilized agricultural produce into high quality, affordable and innovative food products that meet consumer needs while creating value for farmers and vendors across the food system.</p>
-                        </div>
-                        <div>
-                            <h3>Business Objectives</h3>
-                            <p>To foster innovation in the food industry by combining science, technology and community engagement to develop unique solutions and products that substitute imported food products.</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <img src="kethup2.png" alt="Jest Foods Products">
-                </div>
+      <div class="container">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+          <div>
+            <h2>Our Vision</h2>
+            <p>
+              To become Uganda's leading food processing company known for
+              pioneering affordable, safe, and nutritious condiments that drive
+              inclusive agribusiness growth across local and export markets.
+            </p>
+
+            <div class="vision-mission">
+              <div>
+                <h3>Our Mission</h3>
+                <p>
+                  To locally transform surplus and underutilized tomato produce
+                  into high quality, affordable and innovative tomato
+                  condiments that meet consumer needs while creating value for
+                  farmers and vendors across the tomato value chain.
+                </p>
+              </div>
+              <div>
+                <h3>Business Objectives</h3>
+                <p>
+                  To foster innovation in the tomato value chain by combining
+                  science, technology and community engagement to develop unique
+                  solutions and tomato condiments that substitute imported
+                  tomato products.
+                </p>
+              </div>
             </div>
+          </div>
+          <div>
+            <img src="TOMATO KETCHUP.png" alt="Jest Foods Products" />
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Core Values Section -->
-    <section style="background-color: #f5f9f5;">
-        <div class="container">
-            <h2 class="section-title">Our Core Values</h2>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3>Innovation</h3>
-                    <p>Developing pioneering products like probiotic ketchup</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
-                    <h3>Community Focus</h3>
-                    <p>Empowering vendors through our Success Tribe initiative</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-users"></i></div>
-                    <h3>Sustainability</h3>
-                    <p>Reducing food waste through value addition</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-leaf"></i></div>
-                    <h3>Quality</h3>
-                    <p>Ensuring safe, nutritious products through strict processes</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-globe"></i></div>
-                    <h3>Affordability</h3>
-                    <p>Making healthy alternatives accessible to all</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-heart"></i></div>
-                    <h3>Health Focus</h3>
-                    <p>Creating products with functional health benefits</p>
-                </div>
-            </div>
+    <section style="background-color: #f5f9f5">
+      <div class="container">
+        <h2 class="section-title">Our Core Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3>Innovation</h3>
+            <p>Developing pioneering products like probiotic ketchup</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-handshake"></i></div>
+            <h3>Community Focus</h3>
+            <p>Empowering vendors through our Success Tribe initiative</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-users"></i></div>
+            <h3>Sustainability</h3>
+            <p>Reducing food waste through value addition</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-leaf"></i></div>
+            <h3>Quality</h3>
+            <p>Ensuring safe, nutritious products through strict processes</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-globe"></i></div>
+            <h3>Affordability</h3>
+            <p>Making healthy alternatives accessible to all</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-heart"></i></div>
+            <h3>Health Focus</h3>
+            <p>Creating products with functional health benefits</p>
+          </div>
         </div>
-    </section>
-     <section id="team" class="team-section">
-        <div class="container">
-            <h2 class="section-title">Our Leadership Team</h2>
-            <p class="text-center">
-                Meet the passionate founders driving innovation at Jest Foods
-            </p>
-            
-            <div class="team-container">
-                <!-- Team Member 1 -->
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="estar.jpg" alt="Esther Nakimuli">
-                        <div class="designation-badge">Co-Founder</div>
-                    </div>
-                    <div class="member-info">
-                        <h2 class="member-name">Esther Nakimuli</h2>
-                        <p class="member-title">Co-Directors & Operations</p>
-                        
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:esthernakimuli204@gmail.com">esthernakimuli204@gmail.com</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:+256708985292">+256 708 985 292</a>
-                            </div>
-                        </div>
-                        
-                        <button class="profile-toggle">
-                            <i class="fas fa-chevron-down"></i> View Professional Profile
-                        </button>
-                    </div>
-                    
-                    <div class="profile-content">
-                        <h3>Professional Profile</h3>
-                        <p>Esther Nakimuli is a co-founder of Jest Foods Industries Limited and a bioprocessing engineer from Makerere University. She oversees operations, quality control, and supply chain management at Jest Foods, ensuring efficient production processes and adherence to food safety standards.</p>
-                        <p>Esther spearheaded the development of Jest Foods' innovative probiotic ketchup, combining her expertise in biotechnology with a commitment to creating healthier food alternatives for Ugandan consumers. Her strategic vision focuses on scaling operations while maintaining the company's core values of sustainability and community impact.</p>
-                    </div>
-                </div>
-                
-                <!-- Team Member 2 -->
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="jackie.jpeg" alt="Jackline Bawaye">
-                        <div class="designation-badge">Co-Founder</div>
-                    </div>
-                    <div class="member-info">
-                        <h2 class="member-name">Jackline Bawaye</h2>
-                        <p class="member-title">Co-Directors & Product Development</p>
-                        
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <a href="mailto:jacklinebawaye@gmail.com">jacklinebawaye@gmail.com</a>
-                            </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <a href="tel:+256705514324">+256 705 514 324</a>
-                            </div>
-                        </div>
-                        
-                        <button class="profile-toggle">
-                            <i class="fas fa-chevron-down"></i> View Professional Profile
-                        </button>
-                    </div>
-                    
-                    <div class="profile-content">
-                        <h3>Professional Profile</h3>
-                        <p>Jackline Bawaye is a co-founder of Jest Foods Industries Limited and a graduate of the School of Food Technology, Nutrition and Bioengineering at Makerere University. She brings extensive expertise in food processing and product development, having led the formulation of Jest Foods' flagship tomato ketchup product.</p>
-                        <p>With a passion for reducing post-harvest losses and creating economic opportunities for market vendors, Jackline co-founded the Success Tribe initiative to formalize relationships with tomato suppliers. Her commitment to innovation and community empowerment drives Jest Foods' mission to transform Uganda's food processing landscape.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </section>
 
-    
+    <!-- Team Section -->
+    <section id="team" class="team-section">
+      <div class="container">
+        <h2 class="section-title">Our Leadership Team</h2>
+        <p class="text-center">
+          Meet the passionate founders driving innovation at Jest Foods
+        </p>
 
+        <div class="team-container">
+          <!-- Team Member 1 -->
+          <div class="team-member">
+            <div class="member-image">
+              <img src="estar.jpg" alt="Esther Nakimuli" />
+              <div class="designation-badge">Co-Founder</div>
+            </div>
+            <div class="member-info">
+              <h2 class="member-name">Esther Nakimuli</h2>
+              <p class="member-title">Chief Finance Officer</p>
+
+              <div class="contact-info">
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:esthernakimuli204@gmail.com"
+                    >esthernakimuli204@gmail.com</a
+                  >
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-phone"></i>
+                  <a href="tel:+256708985292">+256 708 985 292</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Member 2 -->
+          <div class="team-member">
+            <div class="member-image">
+              <img src="jackie.jpeg" alt="Jackline Bawaye" />
+              <div class="designation-badge">Co-Founder</div>
+            </div>
+            <div class="member-info">
+              <h2 class="member-name">Jackline Bawaye</h2>
+              <p class="member-title">Chief Operations Officer</p>
+
+              <div class="contact-info">
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <a href="mailto:jacklinebawaye@gmail.com"
+                    >jacklinebawaye@gmail.com</a
+                  >
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-phone"></i>
+                  <a href="tel:+256705514324">+256 705 514 324</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Products Section -->
     <section id="products">
+      <div class="container">
+        <h2 class="section-title">Our Products</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-img">
+              <img src="TOMATO KETCHUP.png" alt="Tomato Ketchup" />
+            </div>
+            <div class="service-content">
+              <h3>Tomato Ketchup</h3>
+              <p>
+                Our flagship product made from locally sourced ripe tomatoes,
+                offering a fresher taste and supporting local farmers.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img">
+              <img src="BBQ SAUCE.png" alt="BBQ Sauce" />
+            </div>
+            <div class="service-content">
+              <h3>BBQ Sauce</h3>
+              <p>
+                A rich, smoky sauce perfect for grilling and dipping, made with
+                natural sweeteners and local ingredients.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img">
+              <img src="APPETA SAUCE.png" alt="Hot Sauce" />
+            </div>
+            <div class="service-content">
+              <h3>Appeta</h3>
+              <p>A healthy and tasty instant appetizer.</p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img">
+              <img src="TOMATO PASTE.png" alt="Probiotic Ketchup" />
+            </div>
+            <div class="service-content">
+              <h3>Tomatao Paste</h3>
+              <p>
+                Rich, nutritious paste made from fresh ripe tomatoes to boost
+                flavor and health.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img">
+              <img src="sachet.png" alt="Tomato Sauce" />
+            </div>
+            <div class="service-content">
+              <h3>Organic Ketchup</h3>
+              <p>
+                Organic tomato ketchup in handy sachets, perfect for meals on
+                the go.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img">
+              <img src="TOMATO SAUCE.png" alt="Tomato Sauce" />
+            </div>
+            <div class="service-content">
+              <h3>Tomato Sauce</h3>
+              <p>
+                A versatile cooking sauce made from ripe tomatoes, perfect for
+                everyday meals and recipes.
+              </p>
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-img">
+              <img src="HOT SAUCE.png" alt="Tomato Sauce" />
+            </div>
+            <div class="service-content">
+              <h3>Hot Sauce</h3>
+              <p>
+                A versatile cooking sauce made from ripe tomatoes, perfect for
+                everyday meals and recipes.
+              </p>
+            </div>
+          </div>
+          
+            
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="community-outreach" class="community-section">
         <div class="container">
-            <h2 class="section-title">Our Products</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="kethup2.png" alt="Tomato Ketchup">
-                    </div>
-                    <div class="service-content">
-                        <h3>Tomato Ketchup</h3>
-                        <p>Our flagship product made from locally sourced ripe tomatoes, offering a fresher taste and supporting local farmers.</p>
-                        <!-- <div class="price-tag">UGX 6,000 (500mL)</div> -->
-                    </div>
+            <h2 class="section-title">Community Outreach</h2>
+            
+            <div class="community-content">
+                <div class="community-image">
+                    <img src="sxstribe.jpg" alt="Success Tribe Initiative" />
                 </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="bbq2.png" alt="BBQ Sauce">
-                    </div>
-                    <div class="service-content">
-                        <h3>BBQ Sauce</h3>
-                        <p>A rich, smoky sauce perfect for grilling and dipping, made with natural sweeteners and local ingredients.</p>
-                        <!-- <div class="price-tag">UGX 8,000 (500mL)</div> -->
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="appeta.png" alt="Hot Sauce">
-                    </div>
-                    <div class="service-content">
-                        <h3>Appeta</h3>
-                        <p>A healthy and tasty instant appetizer.</p>
-                        <!-- <div class="price-tag">UGX 3,500 (500mL)</div> -->
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="paste.png" alt="Probiotic Ketchup">
-                    </div>
-                    <div class="service-content">
-                        <h3>Tomatao Paste</h3>
-                     <p>Rich, nutritious paste made from fresh ripe tomatoes to boost flavor and health.</p>
-
-                        <!-- <div class="price-tag">UGX 6,500 (500mL)</div> -->
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="sachet.png" alt="Tomato Sauce">
-                    </div>
-                    <div class="service-content">
-                        <h3>Organic Ketchup</h3>
-                        <p>Organic tomato ketchup in handy sachets, perfect for meals on the go.</p>
-
-               
-                        <!-- <div class="price-tag">UGX 3,500 (500mL)</div> -->
-                    </div>
-                </div>
-                 <div class="service-card">
-                    <div class="service-img">
-                        <img src="ts2.png" alt="Tomato Sauce">
-                    </div>
-                    <div class="service-content">
-                        <h3>Tomato Sauce</h3>
-                        <p>A versatile cooking sauce made from ripe tomatoes, perfect for everyday meals and recipes.</p>
-                        <!-- <div class="price-tag">UGX 3,500 (500mL)</div> -->
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-img">
-                        <img src="sxstribe.jpg" alt="Success Tribe Initiative">
-                    </div>
-                    <div class="service-content">
-                        <h3>Success Tribe Initiative</h3>
-                        <p>Our community program addressing food waste in informal markets through vendor training and supply partnerships.</p>
-                        <div class="price-tag">65+ Vendors</div>
+                <div class="community-details">
+                  
+                    <h3>Success Tribe Initiative</h3>
+                    <p>
+                        Our community program addressing food waste in informal markets through vendor training and supply partnerships.
+                    </p>
+                    <p>
+                        We work directly with local vendors to reduce tomato waste while creating sustainable business opportunities. Through our training programs, vendors learn proper handling techniques, food preservation methods, and business skills to enhance their livelihoods.
+                    </p>
+                    
+                    <div class="community-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">65+</span>
+                            <span class="stat-label">Active Vendors</span>
+                        </div>
+                        <!-- <div class="stat-item">
+                            <span class="stat-number">40%</span>
+                            <span class="stat-label">Waste Reduction</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Training Sessions</span>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -1219,226 +1435,208 @@
     </section>
 
     <!-- Strategic Plan Section -->
-    <section id="strategic-plan" style="background-color: #f5f9f5;">
+     <!-- Strategic Plan Section -->
+    <section id="strategic-plan" class="strategic-plan-section">
         <div class="container">
-            <h2 class="section-title">Strategic Plan 2025-2027</h2>
+            <h2 class="section-title">Coming soon</h2>
             
-            
-            
-            <div class="timeline">
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <h3>Phase 1: Certification & Efficiency (2025)</h3>
-                        <p>Obtain UNBS certification for all product lines, acquire pulper finisher to improve efficiency and reduce labor-intensive processing.</p>
-                       
-                    </div>
+            <!-- Featured Product -->
+            <div class="featured-product">
+                <div class="product-image">
+                    <img src="Probiotic.png" alt="Probiotic Ketchup" />
                 </div>
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <h3>Phase 2: Packaging & Production (2026)</h3>
-                        <p>Purchase sachet packaging machine to expand into low-cost consumer packaging and secure larger, semi-automated production facility.</p>
-                        
-                    </div>
-                </div>
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <h3>Phase 3: Market Expansion (2026-2027)</h3>
-                        <p>Scale vendor integration model to five new market groups and expand into formal supermarket chains and institutional buyers.</p>
-                       
-                    </div>
-                </div>
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <h3>Phase 4: Product Innovation (2027)</h3>
-                        <p>Launch new product lines including appetizer sauce, pizza/pasta sauce, mayonnaise, tomato paste, and jam.</p>
-                        
-                    </div>
+                <div class="product-details">
+                    
+                    <h3>Probiotic Ketchup</h3>
+                    <p>
+                        Introducing East Africa's First Probiotic Ketchup – a revolutionary non-dairy condiment that combines the rich flavor of locally sourced Phoenix and Roma tomatoes with billions of Lactobacillus rhamnosus, a powerful probiotic strain clinically proven to support both gut and urogenital health.
+                    </p>
+                    <p>
+                        Unlike yogurt-based probiotics, our 100% plant-based ketchup is dairy-free, allergy-friendly, and suitable for the whole family, delivering delicious taste with every meal while actively promoting digestive wellness, immune function, and intimate health – making Jest Foods the pioneer of functional condiments in Africa.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
+    </div></section>
 
     <!-- Contact Section -->
     <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Food Technology and Incubation Business Center, Makerere University, Kampala, Uganda</p>
-                    <p><i class="fas fa-phone"></i> +256 746359995 / +256 780699436</p>
-                    <p><i class="fas fa-envelope"></i> jestfoods4@gmail.com</p>
-                    <p><i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 5:00 PM</p>
-                    
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            
-                            <input type="text" id="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> Food Technology and
+              Incubation Business Center, Makerere University, Kampala, Uganda
+            </p>
+            <p><i class="fas fa-phone"></i> +256 746359995 / +256 780699436</p>
+            <p><i class="fas fa-envelope"></i> jestfoods4@gmail.com</p>
+            <p>
+              <i class="fas fa-clock"></i> Monday - Friday: 8:00 AM - 5:00 PM
+            </p>
+
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            
-            <div class="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63811.05209891995!2d32.5400!3d0.3317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177db87d25555555:0x29bbf0eccc870888!2sMakerere%20University!5e0!3m2!1sen!2sug!4v1635784505905!5m2!1sen!2sug" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required />
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" required></textarea>
+              </div>
+              <button type="submit" class="btn">Send Message</button>
+            </form>
+          </div>
         </div>
+
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63811.05209891995!2d32.5400!3d0.3317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177db87d25555555:0x29bbf0eccc870888!2sMakerere%20University!5e0!3m2!1sen!2sug!4v1635784505905!5m2!1sen!2sug"
+            width="100%"
+            height="100%"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-section">
-                    <h3>JEST FOODS</h3>
-                    <p>Transforming surplus tomatoes into safe, nutritious, and affordable value-added products while creating value for farmers and vendors.</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer
-
--section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#team">Our Team</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#strategic-plan">Strategic Plan</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Our Products</h3>
-                    <ul>
-                        <li>Tomato Ketchup</li>
-                        <li>BBQ Sauce</li>
-                        <li>Hot Sauce</li>
-                        <li>appeta</li>
-                        <li>Tomato Paste</li>
-                        <li>Tomato Sauce</li>
-                        <li>Success Tribe Initiative</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Makerere University, Kampala, Uganda</p>
-                    <p><i class="fas fa-phone"></i> +256 746 359995</p>
-                    <p><i class="fas fa-envelope"></i> info@jestfoods.com</p>
-                </div>
+      <div class="container">
+        <div class="footer-container">
+          <div class="footer-section">
+            <h3>JEST FOODS</h3>
+            <p>
+              Transforming surplus tomatoes into safe, nutritious, and
+              affordable value-added products while creating value for farmers
+              and vendors.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Jest Foods Industries Limited. All Rights Reserved.</p>
-            </div>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#team">Our Team</a></li>
+              <li><a href="#products">Products</a></li>
+              <li><a href="#strategic-plan">Strategic Plan</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Our Products</h3>
+            <ul>
+              <li>Tomato Ketchup</li>
+              <li>BBQ Sauce</li>
+              <li>Hot Sauce</li>
+              <li>Appetizer Sauce</li>
+              <li>Tomato Paste</li>
+              <li>Pasta Sauce</li>
+              <li>Tomato Sauce</li>
+              <li>HotSauce</li>
+              
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Contact Info</h3>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> Makerere University,
+              Kampala, Uganda
+            </p>
+            <p><i class="fas fa-phone"></i> +256 746 359995 +256 780 699 436</p>
+            <p><i class="fas fa-envelope"></i> jestfoods4@gmail.com</p>
+          </div>
         </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Jest Foods Industries Limited. All Rights Reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <script>
-        // Mobile Navigation
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            
-            // Change icon based on state
-            if (navMenu.classList.contains('active')) {
-                hamburger.innerHTML = '<i class="fas fa-times"></i>';
-            } else {
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+      // Mobile Navigation
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector(".nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+
+        // Change icon based on state
+        if (navMenu.classList.contains("active")) {
+          hamburger.innerHTML = '<i class="fas fa-times"></i>';
+        } else {
+          hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+      });
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+          hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+      });
+
+      // Form submission
+      const contactForm = document.getElementById("contactForm");
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Thank you for your message! We will contact you soon.");
+        contactForm.reset();
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: "smooth",
+            });
+
+            // Close mobile menu if open
+            if (navMenu.classList.contains("active")) {
+              hamburger.classList.remove("active");
+              navMenu.classList.remove("active");
+              hamburger.innerHTML = '<i class="fas fa-bars"></i>';
             }
+          }
         });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We will contact you soon.');
-            contactForm.reset();
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (navMenu.classList.contains('active')) {
-                        hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                }
-            });
-        });
-        
-        // Team profile toggle functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleButtons = document.querySelectorAll('.profile-toggle');
-            
-            toggleButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const profileContent = this.parentElement.nextElementSibling;
-                    const icon = this.querySelector('i');
-                    
-                    profileContent.classList.toggle('active');
-                    
-                    if (profileContent.classList.contains('active')) {
-                        this.innerHTML = '<i class="fas fa-chevron-up"></i> Hide Profile';
-                    } else {
-                        this.innerHTML = '<i class="fas fa-chevron-down"></i> View Professional Profile';
-                    }
-                });
-            });
-        });
+      });
     </script>
-</body>
+  </body>
 </html>
